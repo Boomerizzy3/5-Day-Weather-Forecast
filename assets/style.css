@@ -1,10 +1,22 @@
 header {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
     background-color: blue;
     color: white;
 }
 
 main {
     display: flex
+}
+
+button {
+    color: white;
+    background-color: rgb(100, 100, 254);
+}
+
+ul {
+    padding-left: 0rem;
 }
 
 li {
@@ -22,4 +34,20 @@ li {
 
 #five-day-forecast section {
     margin: 2rem;
+    padding: .75rem;
+    background-color: rgb(52, 52, 97);
+    color: white;
+}
+
+#search-history h2 {
+    text-align: center;
+    background-color: lightgray;
+    border-radius: .25rem;
+}
+
+.city-info {
+    margin: 2rem;
+    margin-bottom: 0rem;
+    padding: .75rem;
+    border: 2px solid gray;
 }

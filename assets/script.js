@@ -47,13 +47,18 @@ const displayInfo = (cityName, cityTemp, cityHumidity, cityWind) => {
     let today = moment().format("MM-DD-YYYY")
 
     cityNamedate.textContent = (`${cityName} ${today}`);
-    temp.textContent = `Temp ${cityTemp}°F`;
+    temp.textContent = `Temp: ${cityTemp}°F`;
     wind.textContent = `Wind: ${cityWind} MPH`;
-    humidity.textContent = `Humidity ${cityHumidity} %`;
+    humidity.textContent = `Humidity: ${cityHumidity} %`;
 }
 
 const displayForecast = (day1, day2, day3, day4, day5) => {
     let dayList = [day1, day2, day3, day4, day5]
+    let forecastParent = document.getElementById("five-day-forecast")
+    while (forecastParent.hasChildNodes()) {
+        forecastParent.removeChild(forecastParent.firstChild);
+      }
+
     dayList.forEach(day => {
         let currentDay = moment(day.dt_txt).format("MM-DD-YYYY")
         let currentTemp = day.main.temp
@@ -64,12 +69,11 @@ const displayForecast = (day1, day2, day3, day4, day5) => {
         let tempDisplay = document.createElement('li')
         let windDisplay = document.createElement('li')
         let humidityDisplay = document.createElement('li')
-        let forecastParent = document.getElementById("five-day-forecast")
 
         dateDisplay.textContent = currentDay
-        tempDisplay.textContent = currentTemp
-        windDisplay.textContent = currentWind
-        humidityDisplay.textContent = currentHumidity
+        tempDisplay.textContent = `Temp: ${currentTemp}°F`
+        windDisplay.textContent = `Wind: ${currentWind} MPH`
+        humidityDisplay.textContent = `Humidity: ${currentHumidity} %`
 
         forecastParent.appendChild(display)
         display.appendChild(dateDisplay)
