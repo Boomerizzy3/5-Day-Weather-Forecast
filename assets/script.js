@@ -25,7 +25,16 @@ function getApi1() {
     })
     .then(function (data) {
       console.log(data);
+      appendCity(data.name)
       })
+}
+
+const appendCity = (cityName) => {
+    let citylist = cityName
+    let searchHistory = document.getElementById("search-history")
+    let cityname = document.createElement('h2')
+    cityname.textContent = citylist
+    searchHistory.appendChild(cityname)
 }
 
 searchButton.addEventListener('click', getApi);
