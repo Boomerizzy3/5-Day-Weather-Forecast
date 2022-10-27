@@ -26,6 +26,7 @@ function getApi1() {
     .then(function (data) {
       console.log(data);
       appendCity(data.name)
+      displayInfo(data.name, data.main.temp, data.main.humidity, data.wind.speed)
       })
 }
 
@@ -35,6 +36,19 @@ const appendCity = (cityName) => {
     let cityname = document.createElement('h2')
     cityname.textContent = citylist
     searchHistory.appendChild(cityname)
+}
+
+const displayInfo = (cityName, cityTemp, cityHumidity, cityWind) => {
+    let cityNamedate = document.getElementById('city-name-date')
+    let temp = document.getElementById('temp')
+    let wind = document.getElementById('wind')
+    let humidity = document.getElementById('humidity')
+    let today = moment().format("M-D-YYYY")
+
+    cityNamedate.textContent = (`${cityName} ${today}`);
+    temp.textContent = cityTemp;
+    wind.textContent = cityWind;
+    humidity.textContent = cityHumidity;
 }
 
 searchButton.addEventListener('click', getApi);
