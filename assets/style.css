@@ -2,3 +2,24 @@ header {
     background-color: blue;
     color: white;
 }
+
+main {
+    display: flex
+}
+
+li {
+    list-style: none;
+}
+
+.data-display {
+    display: flex;
+    flex-direction: column;
+}
+
+#five-day-forecast {
+    display: flex;
+}
+
+#five-day-forecast section {
+    margin: 2rem;
+}

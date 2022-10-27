@@ -12,6 +12,7 @@ function getApi() {
     .then(function (data) {
       console.log(data);
       getApi1()
+      displayForecast(data.list[3], data.list[11], data.list[19], data.list[27], data.list[35])
       })
 };
 
@@ -43,12 +44,40 @@ const displayInfo = (cityName, cityTemp, cityHumidity, cityWind) => {
     let temp = document.getElementById('temp')
     let wind = document.getElementById('wind')
     let humidity = document.getElementById('humidity')
-    let today = moment().format("M-D-YYYY")
+    let today = moment().format("MM-DD-YYYY")
 
     cityNamedate.textContent = (`${cityName} ${today}`);
-    temp.textContent = cityTemp;
-    wind.textContent = cityWind;
-    humidity.textContent = cityHumidity;
+    temp.textContent = `Temp ${cityTemp}°F`;
+    wind.textContent = `Wind: ${cityWind} MPH`;
+    humidity.textContent = `Humidity ${cityHumidity} %`;
+}
+
+const displayForecast = (day1, day2, day3, day4, day5) => {
+    let dayList = [day1, day2, day3, day4, day5]
+    dayList.forEach(day => {
+        let currentDay = moment(day.dt_txt).format("MM-DD-YYYY")
+        let currentTemp = day.main.temp
+        let currentWind = day.wind.speed
+        let currentHumidity = day.main.humidity
+        let display = document.createElement('section')
+        let dateDisplay = document.createElement('h1')
+        let tempDisplay = document.createElement('li')
+        let windDisplay = document.createElement('li')
+        let humidityDisplay = document.createElement('li')
+        let forecastParent = document.getElementById("five-day-forecast")
+
+        dateDisplay.textContent = currentDay
+        tempDisplay.textContent = currentTemp
+        windDisplay.textContent = currentWind
+        humidityDisplay.textContent = currentHumidity
+
+        forecastParent.appendChild(display)
+        display.appendChild(dateDisplay)
+        display.appendChild(tempDisplay)
+        display.appendChild(windDisplay)
+        display.appendChild(humidityDisplay)
+
+    });
 }
 
 searchButton.addEventListener('click', getApi);
